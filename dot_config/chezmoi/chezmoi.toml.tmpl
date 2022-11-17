@@ -1,3 +1,12 @@
+{{/* boolean feature tags */}}
+{{- $dbtlabs := false -}}{{/* true if this machine should have dbt Labs secrets from 1Password */}}
+
+{{- $hostname := .chezmoi.hostname -}}
+
+{{- if eq $hostname "aescay-dbt" -}}
+{{-   $dbtlabs = true -}}
+{{- end -}}
+
 [data]
-  dbtlabs = false
+  dbtlabs = {{ $dbtlabs }}
 
