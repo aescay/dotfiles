@@ -1,0 +1,26 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+{{- if not .dbtlabs -}}
+
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+echo "📦 Installing personal packages"
+
+{{ $casks := list
+  "1password"
+  "google-chrome"
+  "iterm2"
+  "loom"
+  "slack"
+  "visual-studio-code"
+  "zoom" -}}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF
+
+{{ end -}}
+{{ end -}}

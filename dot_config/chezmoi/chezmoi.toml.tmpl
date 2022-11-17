@@ -2,6 +2,13 @@
 {{- $dbtlabs := false -}}{{/* true if this machine should have dbt Labs secrets from 1Password */}}
 
 {{- $hostname := .chezmoi.hostname -}}
+{{/* work around for previous work machine name */}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
+{{-   if eq $computerName "Andrew’s WorkBook Pro" -}}
+{{-     $hostname = "aescay-dbt" -}}
+{{-   end -}}
+{{- end -}}
 
 {{- if eq $hostname "aescay-dbt" -}}
 {{-   $dbtlabs = true -}}

@@ -23,15 +23,7 @@ echo "📦 Installing general packages"
   "wget"
   "zsh" -}}
 {{ $casks := list
-  "1password-cli"
-  "1password"
-  "google-chrome"
-  "iterm2"
-  "loom"
-  "nordvpn"
-  "slack"
-  "visual-studio-code"
-  "zoom" -}}
+  "1password-cli" -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range ($taps | sortAlpha | uniq) -}}
@@ -50,10 +42,13 @@ mas "amphetamine", id: 937984704
 mas "better-snap-tool", id: 417375580
 mas "hidden-bar", id: 1452453066
 EOF
-{{ end -}}
+
+
 
 echo "🏎 Speeding up the dock"
 
 defaults write com.apple.dock autohide-time-modifier -float 0.15;killall Dock
 
 echo "✅ Done Installing"
+
+{{ end -}}
