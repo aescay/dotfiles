@@ -1,0 +1,11 @@
+[user]
+	name = aescay
+	email = andrew.escay@gmail.com
+[core]
+	excludesfile = /Users/andrew/.gitignore
+[alias]
+	tree = log --oneline --decorate --all --graph
+[push]
+	default = current
+[pull]
+	rebase = false
